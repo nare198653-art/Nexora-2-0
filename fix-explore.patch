@@ -1,0 +1,42 @@
+--- components/ExploreView.tsx
++++ components/ExploreView.tsx
+@@ -851,19 +851,20 @@
+   const [conversations, setConversations] = useState<DirectMessage[]>(INITIAL_DMS);
+ 
++  const fetchConversations = useCallback(async () => {
++    try {
++      const res = await fetch('/api/chat/conversations');
++      if (res.ok) {
++        const data = await res.json();
++        if (Array.isArray(data)) {
++          setConversations(data);
++        }
++      }
++    } catch (err) {
++      console.error('Failed to load conversations from database:', err);
++    }
++  }, []);
++
+   useEffect(() => {
+-    let isMounted = true;
+-    const fetchConversations = async () => {
+-      try {
+-        const res = await fetch('/api/chat/conversations');
+-        if (res.ok) {
+-          const data = await res.json();
+-          if (isMounted && Array.isArray(data)) {
+-            setConversations(data);
+-          }
+-        }
+-      } catch (err) {
+-        console.error('Failed to load conversations from database:', err);
+-      }
+-    };
+     fetchConversations();
+     const interval = setInterval(fetchConversations, 3000);
+     return () => {
+-      isMounted = false;
+       clearInterval(interval);
+     };
+-  }, []);
++  }, [fetchConversations]);

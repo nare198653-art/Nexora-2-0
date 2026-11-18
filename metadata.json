@@ -1,0 +1,12 @@
+{
+  "name": "Remix Copy of Copy of Nexora Super App",
+  "description": "The world’s first purpose-driven AI super app for focus, growth, and creation. Combining Gemini intelligence with social purpose.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone",
+    "geolocation"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

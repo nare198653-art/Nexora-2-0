@@ -1,0 +1,21 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    // Default deny
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+
+    // Workspace user media uploads (avatars, banners, creator studio assets)
+    match /users/{userId}/{folder}/{fileName} {
+      allow read: if userId.matches('^[a-zA-Z0-9_\\-]+$') &&
+        folder in ['avatars', 'banners', 'creator'];
+      allow write: if userId.matches('^[a-zA-Z0-9_\\-]+$') &&
+        folder in ['avatars', 'banners', 'creator'] &&
+        request.resource.size <= 5 * 1024 * 1024 &&
+        request.resource.contentType.matches('image/.*');
+      allow delete: if userId.matches('^[a-zA-Z0-9_\\-]+$') &&
+        folder in ['avatars', 'banners', 'creator'];
+    }
+  }
+}

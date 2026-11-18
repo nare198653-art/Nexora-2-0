@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-sans: "Plus Jakarta Sans", "Inter", ui-sans-serif, system-ui, sans-serif;
+    --font-outfit: "Outfit", sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  }
+}
+
+body {
+  @apply font-sans bg-slate-950 text-slate-100 selection:bg-indigo-500/30 selection:text-indigo-200 antialiased;
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-outfit);
+  }
+
+  /* Universal Nexora Card Tokens */
+  .nexora-card {
+    @apply bg-gradient-to-b from-slate-900/80 via-slate-900/60 to-slate-950/90 border border-white/[0.08] rounded-2xl shadow-xl shadow-black/40 backdrop-blur-xl transition-all duration-300;
+  }
+
+  .nexora-card-interactive {
+    @apply bg-slate-900/70 hover:bg-slate-900/90 border border-white/[0.08] hover:border-indigo-500/30 rounded-2xl shadow-lg hover:shadow-indigo-500/10 transition-all duration-300 backdrop-blur-md cursor-pointer;
+  }
+
+  .nexora-card-glass {
+    @apply bg-slate-950/60 border border-white/[0.06] backdrop-blur-2xl rounded-2xl shadow-2xl;
+  }
+
+  /* Universal Nexora Typography Tokens */
+  .nexora-h1 {
+    @apply font-display text-2xl sm:text-3xl font-bold tracking-tight text-slate-50;
+  }
+
+  .nexora-h2 {
+    @apply font-display text-lg sm:text-xl font-bold tracking-tight text-slate-100;
+  }
+
+  .nexora-subtitle {
+    @apply text-xs sm:text-sm font-normal text-slate-400 leading-relaxed;
+  }
+
+  .nexora-label {
+    @apply text-[11px] font-medium text-slate-400 uppercase tracking-wider;
+  }
+
+  .nexora-badge {
+    @apply inline-flex items-center gap-1.5 bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 px-2.5 py-0.5 rounded-full text-[11px] font-medium tracking-wide whitespace-nowrap;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.2);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(51, 65, 85, 0.4);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(99, 102, 241, 0.5);
+}
+
+/* ==========================================
+   Desktop & Desktop Site Unified CSS Engine
+   ========================================== */
+
+.nexora-app-shell {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Medium Screens & Tablet Desktop Mode */
+@media (min-width: 768px) {
+  .nexora-app-shell {
+    max-width: 100%;
+  }
+
+  /* Bottom Navigation Dock on Desktop / Desktop Site Mode */
+  .nexora-app-shell nav.fixed.bottom-0 {
+    max-width: 720px !important;
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%) !important;
+    bottom: 12px !important;
+    border-radius: 28px !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 20px rgba(99, 102, 241, 0.15) !important;
+  }
+}
+
+/* Full Desktop & Mobile Desktop Site Mode (>= 1024px) */
+@media (min-width: 1024px) {
+  html, body {
+    background-color: #020617;
+  }
+
+  .nexora-app-shell {
+    max-width: 1280px;
+    margin: 0 auto;
+    border-left: 1px solid rgba(255, 255, 255, 0.06);
+    border-right: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow: 0 0 100px rgba(0, 0, 0, 0.7);
+  }
+
+  /* Header alignment for desktop site */
+  .nexora-app-shell header {
+    max-width: 1280px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Bottom Navigation Dock on Desktop Site */
+  .nexora-app-shell nav.fixed.bottom-0 {
+    max-width: 768px !important;
+    bottom: 16px !important;
+  }
+
+  /* Toast notification centering */
+  .nexora-app-shell .fixed.top-24 {
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+  }
+}
+
+/* Ultra-Wide Monitors & Wide Desktop Sites (>= 1440px) */
+@media (min-width: 1440px) {
+  .nexora-app-shell {
+    max-width: 1400px;
+  }
+
+  .nexora-app-shell header {
+    max-width: 1400px;
+  }
+
+  .nexora-app-shell nav.fixed.bottom-0 {
+    max-width: 800px !important;
+  }
+}
+
